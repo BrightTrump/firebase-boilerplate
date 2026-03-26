@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from 'next/link'
+import Link from "next/link";
 import "./css/globals.css";
+import GetFullYear from "@/components/get-full-year";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +21,7 @@ export default function RootLayout({
             <div className="navbar">
               <div className="flex-1">
                 <Link href="/" className="btn btn-ghost text-xl">
-                  Firebase 
+                  Firebase
                 </Link>
               </div>
               <div className="flex-none">
@@ -46,7 +47,9 @@ export default function RootLayout({
         <main className="container mx-auto py-16 px-6">{children}</main>
 
         <footer className="text-gray-400 text-center text-xs">
-          <p>CopyRight &copy; 2022 - {new Date().getFullYear()}</p>
+          <p>
+            CopyRight &copy; 2022 - <GetFullYear />
+          </p>
         </footer>
       </body>
     </html>
