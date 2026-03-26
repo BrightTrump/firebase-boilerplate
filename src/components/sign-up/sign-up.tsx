@@ -1,46 +1,30 @@
 "use client";
 import { CreateUser } from "@/@types/auth/auth.types";
 import { useCreateUser } from "@/hooks/auth/create-user.hook";
-import React, { useState, FormEvent } from "react";
+import React, { FormEvent } from "react";
 
 interface SignUpProps {
   data: CreateUser;
 }
 
 export default function SignUp({ data }: SignUpProps) {
-  const { createUser, isLoading } = useCreateUser();
+  const {
+    createUser,
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    bio,
+    setBio,
+  } = useCreateUser();
 
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [bio, setBio] = useState<string>("");
-
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    const addUser = await createUser({
-      name,
-      email,
-      password,
-      confirmPassword,
-      bio,
-    });
-
-    if (addUser) {
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setBio("");
-      setSuccess("User successfully registered!");
-    } else {
-      setError("Failed to create user. Check validation errors.");
-    }
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    createUser(e);
   };
-
   return (
     <main className="flex min-h-screen items-center justify-center p-8 bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">

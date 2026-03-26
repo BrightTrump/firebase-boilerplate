@@ -1,7 +1,7 @@
 import { CreateUser } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
-import { FormEvent, useState } from "react";
+import { useState, FormEvent } from "react";
 
 export const useCreateUser = () => {
   // Form state
@@ -13,59 +13,81 @@ export const useCreateUser = () => {
 
   // Status state
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState<string | null>(null);
-  const [isSuccess, setIsSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const handleCreateUser = async (e: FormEvent) => {
     e.preventDefault();
-    setIsError(null);
-    setIsSuccess(null);
+    setError(null);
+    setSuccess(null);
     setIsLoading(true);
 
     try {
-      //Check if email already exist
-      const isEmailExist = query(
+      // Check if email already exists
+      const emailQuery = query(
         collection(db, "users"),
-        where("eamil", "==", data.email),
+        where("email", "==", email),
       );
-      const querySnapshot = await getDocs(isEmailExist);
+      const querySnapshot = await getDocs(emailQuery);
       if (!querySnapshot.empty) {
-        alert("Email already exist");
-        return false;
+        setError("Email already exists");
+        return;
       }
 
       // Password validation
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-      if (!passwordRegex.test(data.password)) {
-        alert(
+      if (!passwordRegex.test(password)) {
+        setError(
           "Password must be at least 6 characters long and contain both letters and numbers",
         );
-        return false;
+        return;
       }
+
       // Confirm password match
-      if (data.password !== data.confirmPassword) {
-        alert("Passwords do not match");
-        return false;
+      if (password !== confirmPassword) {
+        setError("Passwords do not match");
+        return;
       }
 
       // Remove confirmPassword before saving
-      const { confirmPassword, ...userData } = data;
+      const userData: CreateUser = { name, email, password, bio };
 
       const docRef = await addDoc(collection(db, "users"), {
         ...userData,
         createdAt: new Date(),
       });
 
+      setSuccess("User successfully registered!");
       console.log("User created with ID:", docRef.id);
 
-      return true;
+      // Clear form
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setBio("");
     } catch (err) {
       console.error("Error creating user:", err);
-      return false;
+      setError("Failed to create user. Try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { createUser: handleCreateUser, isLoading };
+  return {
+    createUser: handleCreateUser,
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    bio,
+    setBio,
+    isLoading,
+    error,
+    success,
+  };
 };
