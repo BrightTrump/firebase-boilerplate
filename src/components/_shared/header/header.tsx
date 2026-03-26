@@ -17,7 +17,7 @@ export default function Header() {
                 <Link href="/">Home</Link>
               </li>
               <li>
-                <Link href="/fetch-data">Fetch Data</Link>
+                <Link href="/auth">Fetch Users</Link>
               </li>
             </ul>
           </div>
