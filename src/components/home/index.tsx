@@ -1,9 +1,9 @@
 "use client";
-import { useAddDataToFirestore } from "@/hooks/home/home.hook";
+import { useCreateMessage } from "@/hooks/message/create-message.hook";
 import React, { useState, FormEvent } from "react";
 
 export default function Home() {
-  const { addMessage } = useAddDataToFirestore();
+  const { addMessage } = useCreateMessage();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");

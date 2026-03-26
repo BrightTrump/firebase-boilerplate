@@ -3,7 +3,7 @@ import { db } from "@/app/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 
-export const useAddDataToFirestore = () => {
+export const useCreateMessage = () => {
   const [loading, setLoading] = useState(false);
 
   const addMessage = async (data: MessageData): Promise<boolean> => {

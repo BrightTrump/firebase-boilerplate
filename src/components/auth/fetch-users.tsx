@@ -31,7 +31,7 @@ async function fetchDataFromFirestore(): Promise<MessageData[]> {
   return data;
 }
 
-export default function FetchData(): JSX.Element {
+export default function FetchUsers() {
   const [userData, setUserData] = useState<MessageData[]>([]);
 
   useEffect(() => {
