@@ -1,34 +1,8 @@
 "use client";
-import { db } from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
 import React, { useState, FormEvent } from "react";
 
-interface MessageData {
-  name: string;
-  email: string;
-  message: string;
-}
 
-async function addDataToFirestore({
-  name,
-  email,
-  message,
-}: MessageData): Promise<boolean> {
-  try {
-    const docRef = await addDoc(collection(db, "messages"), {
-      name,
-      email,
-      message,
-    });
-    console.log("Document written with ID: ", docRef.id);
-    return true;
-  } catch (err) {
-    console.error("Error adding document: ", err);
-    return false;
-  }
-}
-
-export default function Home(): JSX.Element {
+export default function Home() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
