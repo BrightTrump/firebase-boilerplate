@@ -1,34 +1,15 @@
 "use client";
-import { db } from "@/app/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { CreateUser } from "@/@types/auth/auth.types";
+import { useCreateUser } from "@/hooks/auth/create-user.hook";
 import React, { useState, FormEvent } from "react";
 
-interface MessageData {
-  name: string;
-  email: string;
-  message: string;
+interface SignUpProps {
+  data: CreateUser;
 }
 
-async function addDataToFirestore({
-  name,
-  email,
-  message,
-}: MessageData): Promise<boolean> {
-  try {
-    const docRef = await addDoc(collection(db, "messages"), {
-      name,
-      email,
-      message,
-    });
-    console.log("Document written with ID: ", docRef.id);
-    return true;
-  } catch (err) {
-    console.error("Error adding document: ", err);
-    return false;
-  }
-}
+export default function SignUp({ data }: SignUpProps) {
+  const { createUser, isLoading } = useCreateUser();
 
-export default function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -37,14 +18,14 @@ export default function SignUp() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const added = await addDataToFirestore({
+    const addUser = await createUser({
       name,
       email,
       password,
       confirmPassword,
       bio,
     });
-    if (added) {
+    if (addUser) {
       setName("");
       setEmail("");
       setPassword("");
@@ -92,7 +73,7 @@ export default function SignUp() {
             <input
               type="password"
               value={password}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               required
               className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
@@ -102,9 +83,9 @@ export default function SignUp() {
               Confirm Password
             </label>
             <input
-              type="confirmPassword"
+              type="password"
               value={confirmPassword}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
               className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
