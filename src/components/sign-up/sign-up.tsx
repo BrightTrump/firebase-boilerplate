@@ -16,6 +16,9 @@ export default function SignUp({ data }: SignUpProps) {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [bio, setBio] = useState<string>("");
 
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const addUser = await createUser({
@@ -25,13 +28,16 @@ export default function SignUp({ data }: SignUpProps) {
       confirmPassword,
       bio,
     });
+
     if (addUser) {
       setName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
       setBio("");
-      alert("Data added to Firestore DB!");
+      setSuccess("User successfully registered!");
+    } else {
+      setError("Failed to create user. Check validation errors.");
     }
   };
 
