@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <header className="bg-gray-100 shadow-md">
           <div className="container mx-auto">
             <div className="navbar">
@@ -32,12 +32,6 @@ export default function RootLayout({
                   <li>
                     <Link href="/fetch-data">Fetch Data</Link>
                   </li>
-                  {/* <li>
-                    <details>
-                      <summary>Parent</summary>
-                      <ul className="bg-base-100 rounded-t-none p-2"></ul>
-                    </details>
-                  </li> */}
                 </ul>
               </div>
             </div>
