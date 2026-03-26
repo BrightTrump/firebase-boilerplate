@@ -1,9 +1,9 @@
-import Home from "@/components/home";
+import SignUp from "@/components/sign-up/sign-up";
 
 export default function Page() {
   return (
     <div>
-      <Home />
+      <SignUp />
     </div>
   );
 }

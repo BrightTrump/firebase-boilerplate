@@ -2,7 +2,7 @@
 import { useCreateMessage } from "@/hooks/message/create-message.hook";
 import React, { useState, FormEvent } from "react";
 
-export default function Home() {
+export default function Dashboard() {
   const { addMessage } = useCreateMessage();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

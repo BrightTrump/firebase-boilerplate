@@ -1,4 +1,4 @@
-import { MessageData } from "@/@types/home/home.types";
+import { MessageData } from "@/@types/dashboard/dashboard.types";
 import { db } from "@/app/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
