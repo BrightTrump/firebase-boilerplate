@@ -1,15 +1,16 @@
 "use client";
+import { useAddDataToFirestore } from "@/hooks/home/home.hook";
 import React, { useState, FormEvent } from "react";
 
-
 export default function Home() {
+  const { addDataToFirestore } = useAddDataToFirestore(data);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const added = await addDataToFirestore({ name, email, message });
+    const added = useAddDataToFirestore({ name, email, message });
     if (added) {
       setName("");
       setEmail("");
