@@ -24,7 +24,7 @@ export default function FetchUsers() {
       </div>
       <main className="flex min-h-screen items-center justify-center p-8 bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-          <h1 className="text-xl font-bold mb-6 text-center text-gray-800">
+          <h1 className="text-xl font-bold mb-6 text-center">
             Fetch User(s) from Firebase Firestore DB
           </h1>
           <div>
@@ -34,13 +34,24 @@ export default function FetchUsers() {
               users.map((user) => (
                 <div
                   key={user.id}
-                  className="mb-4 p-4 border-b border-gray-200 last:border-0"
+                  className="text-lg mb-4 p-4 border-b border-gray-200 last:border-0 [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4 [&>div]:items-center [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600"
                 >
-                  <p className="text-lg font-semibold text-gray-700">
-                    {user.name}
-                  </p>
-                  <p className="text-gray-500">Age: {user.age}</p>
-                  <p className="text-gray-600">{user.bio}</p>
+                  <div>
+                    <p>Fullname:</p>
+                    <span>{user.name}</span>
+                  </div>
+                  <div>
+                    <p className="">Email: </p>
+                    <span className="text-primary">{user.email}</span>
+                  </div>
+                  <div>
+                    <p className="">Age: </p>
+                    <span>{user.age ?? "Nil"}</span>
+                  </div>
+                  <div>
+                    <p className="">Bio: </p>
+                    <span>{user.bio}</span>
+                  </div>
                 </div>
               ))
             ) : (
