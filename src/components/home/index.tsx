@@ -23,7 +23,7 @@ export default function Home() {
     <main className="flex min-h-screen items-center justify-center p-8 bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-          Add Data to Firestore
+          Add a Message to Firestore
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
