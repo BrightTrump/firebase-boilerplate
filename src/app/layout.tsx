@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./css/globals.css";
 import GetFullYear from "@/components/get-full-year";
+import Header from "@/components/_shared/header/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,28 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <header className="bg-gray-100 shadow-md">
-          <div className="container mx-auto">
-            <div className="navbar">
-              <div className="flex-1">
-                <Link href="/" className="btn btn-ghost text-xl">
-                  Firebase
-                </Link>
-              </div>
-              <div className="flex-none">
-                <ul className="menu menu-horizontal px-1 text-primary text-md">
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link href="/fetch-data">Fetch Data</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </header>
-
+        <Header />
         <main className="container mx-auto py-16 px-6">{children}</main>
 
         <footer className="text-gray-400 text-center text-xs">
