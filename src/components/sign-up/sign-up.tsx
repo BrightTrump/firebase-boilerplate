@@ -31,15 +31,25 @@ async function addDataToFirestore({
 export default function SignUp() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const added = await addDataToFirestore({ name, email, message });
+    const added = await addDataToFirestore({
+      name,
+      email,
+      password,
+      confirmPassword,
+      bio,
+    });
     if (added) {
       setName("");
       setEmail("");
-      setMessage("");
+      setPassword("");
+      setConfirmPassword("");
+      setBio("");
       alert("Data added to Firestore DB!");
     }
   };
@@ -77,11 +87,35 @@ export default function SignUp() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Message
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Confirm Password
+            </label>
+            <input
+              type="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Bio
             </label>
             <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
               required
               className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               rows={4}
