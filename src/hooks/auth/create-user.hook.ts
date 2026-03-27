@@ -45,7 +45,7 @@ export const useCreateUser = () => {
       }
 
       // Password validation
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
       if (!passwordRegex.test(password)) {
         toast.error(
           "Password must be at least 6 characters long and contain both letters and numbers",
