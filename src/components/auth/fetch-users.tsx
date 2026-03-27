@@ -1,19 +1,8 @@
 "use client";
-import { UserData } from "@/@types/auth/auth.types";
 import { useFetchUsers } from "@/hooks/auth/fetch-users.hook";
-import React, { useEffect, useState } from "react";
 
 export default function FetchUsers() {
-  const { userData, isFetching } = useFetchUsers();
-  const [users, setUsers] = useState<UserData[]>([]);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await userData();
-      setUsers(data);
-    };
-    getUsers();
-  }, []);
+  const { users, isFetching } = useFetchUsers();
 
   return (
     <>

@@ -1,11 +1,10 @@
 "use client";
-import { CreateUser } from "@/@types/auth/auth.types";
 import { useCreateUser } from "@/hooks/auth/create-user.hook";
 import React, { FormEvent } from "react";
 
-interface SignUpProps {
-  data: CreateUser;
-}
+// interface SignUpProps {
+//   data: CreateUser;
+// }
 
 export default function SignUp() {
   const {
