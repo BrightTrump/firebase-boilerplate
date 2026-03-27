@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./css/globals.css";
 import GetFullYear from "@/components/get-full-year";
 import Header from "@/components/_shared/header/header";
