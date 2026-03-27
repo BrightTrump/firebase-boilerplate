@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./css/globals.css";
 import GetFullYear from "@/components/get-full-year";
 import Header from "@/components/_shared/header/header";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,6 +25,7 @@ export default function RootLayout({
             CopyRight &copy; 2022 - <GetFullYear />
           </p>
         </footer>
+        <Toaster />
       </body>
     </html>
   );

@@ -19,6 +19,7 @@ export default function SignUp() {
     setConfirmPassword,
     bio,
     setBio,
+    isLoading,
   } = useCreateUser();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -93,9 +94,10 @@ export default function SignUp() {
           </div>
           <button
             type="submit"
+            disabled={isLoading}
             className="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
           >
-            Submit
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

@@ -1,7 +1,16 @@
+"use client";
 import { CreateUser } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useState, FormEvent } from "react";
+import { toast } from "sonner";
 
 export const useCreateUser = () => {
   // Form state
@@ -30,22 +39,25 @@ export const useCreateUser = () => {
       );
       const querySnapshot = await getDocs(emailQuery);
       if (!querySnapshot.empty) {
-        setError("Email already exists");
+        toast.error("Email already exists");
+        setIsLoading(false);
         return;
       }
 
       // Password validation
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
       if (!passwordRegex.test(password)) {
-        setError(
+        toast.error(
           "Password must be at least 6 characters long and contain both letters and numbers",
         );
+        setIsLoading(false);
         return;
       }
 
       // Confirm password match
       if (password !== confirmPassword) {
-        setError("Passwords do not match");
+        toast.error("Passwords do not match");
+        setIsLoading(false);
         return;
       }
 
@@ -54,10 +66,10 @@ export const useCreateUser = () => {
 
       const docRef = await addDoc(collection(db, "users"), {
         ...userData,
-        createdAt: new Date(),
+        createdAt: serverTimestamp(),
       });
 
-      setSuccess("User successfully registered!");
+      toast.success("User successfully registered!");
       console.log("User created with ID:", docRef.id);
 
       // Clear form
@@ -68,7 +80,7 @@ export const useCreateUser = () => {
       setBio("");
     } catch (err) {
       console.error("Error creating user:", err);
-      setError("Failed to create user. Try again.");
+      toast.error("Failed to create user. Try again.");
     } finally {
       setIsLoading(false);
     }
