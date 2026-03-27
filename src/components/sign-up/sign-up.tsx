@@ -7,7 +7,7 @@ interface SignUpProps {
   data: CreateUser;
 }
 
-export default function SignUp({ data }: SignUpProps) {
+export default function SignUp() {
   const {
     createUser,
     name,
