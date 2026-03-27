@@ -30,22 +30,24 @@ export const useCreateUser = () => {
       );
       const querySnapshot = await getDocs(emailQuery);
       if (!querySnapshot.empty) {
-        setError("Email already exists");
+        alert(setError("Email already exists"));
         return;
       }
 
       // Password validation
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
       if (!passwordRegex.test(password)) {
-        setError(
-          "Password must be at least 6 characters long and contain both letters and numbers",
+        alert(
+          setError(
+            "Password must be at least 6 characters long and contain both letters and numbers",
+          ),
         );
         return;
       }
 
       // Confirm password match
       if (password !== confirmPassword) {
-        setError("Passwords do not match");
+        alert(setError("Passwords do not match"));
         return;
       }
 
@@ -57,7 +59,7 @@ export const useCreateUser = () => {
         createdAt: new Date(),
       });
 
-      setSuccess("User successfully registered!");
+      alert(setSuccess("User successfully registered!"));
       console.log("User created with ID:", docRef.id);
 
       // Clear form
@@ -68,7 +70,7 @@ export const useCreateUser = () => {
       setBio("");
     } catch (err) {
       console.error("Error creating user:", err);
-      setError("Failed to create user. Try again.");
+      alert(setError("Failed to create user. Try again."));
     } finally {
       setIsLoading(false);
     }
