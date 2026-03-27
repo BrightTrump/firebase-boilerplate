@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --popover: #ffffff; /* background color */
-  --popover-foreground: #1f2937; /* text color */
+  --popover: #0a5b08; /* background color */
+  --popover-foreground: #ffffff; /* text color */
   --border: #e5e7eb; /* border color */
   --radius: 0.5rem;
 }
