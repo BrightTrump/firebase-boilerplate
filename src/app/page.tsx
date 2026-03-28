@@ -1,9 +1,9 @@
-import SignUp from "@/components/auth/sign-up/sign-up";
+import Login from "@/components/auth/login/login";
 
 export default function Page() {
   return (
     <div>
-      <SignUp />
+      <Login />
     </div>
   );
 }

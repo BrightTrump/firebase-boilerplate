@@ -20,7 +20,7 @@ export default function Header() {
                 <Link href="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <Link href="/auth">Fetch Users</Link>
+                <Link href="/auth/fetch-users">Fetch Users</Link>
               </li>
             </ul>
           </div>
