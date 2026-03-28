@@ -1,4 +1,5 @@
 "use client";
+import { Icon, Icons } from "@/components/ui";
 import { useFetchUsers } from "@/hooks/auth/fetch-users.hook";
 
 export default function FetchUsers() {
@@ -23,9 +24,9 @@ export default function FetchUsers() {
               users.map((user) => (
                 <div
                   key={user.id}
-                  className="mb-4 p-4 border-b border-gray-200 last:border-0 "
+                  className="p-4 border-b border-gray-200 last:border-0 grid grid-cols-[1fr_auto] gap-4 items-start "
                 >
-                  <div className="text-lg [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4  [&_p]:font-semibold [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600">
+                  <div className="text-lg [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4 [&_p]:font-semibold [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600">
                     <div>
                       <p>Fullname:</p>
                       <span>{user.name ?? "Nil"}</span>
@@ -47,7 +48,16 @@ export default function FetchUsers() {
                   </div>
 
                   {/* Icons */}
-                  <div></div>
+                  <div className="grid grid-cols-[auto_1fr] gap-2 items-center cursor-pointer">
+                    <Icon
+                      type={Icons.EditSquare}
+                      className="text-sm text-gray-600 hover:text-[#000000]"
+                    />
+                    <Icon
+                      type={Icons.Bin}
+                      className="text-sm text-[#da0808] hover:text-base"
+                    />
+                  </div>
                 </div>
               ))
             ) : (
