@@ -10,20 +10,8 @@ import React, { FormEvent, useState } from "react";
 
 export default function Login() {
   const [isRememberMe, setIsRememberMe] = useState(false);
-  const {
-    createUser,
-    name,
-    setName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    bio,
-    setBio,
-    isLoading,
-  } = useCreateUser();
+  const { createUser, email, setEmail, password, setPassword, isLoading } =
+    useCreateUser();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     createUser(e);
