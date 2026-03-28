@@ -23,24 +23,31 @@ export default function FetchUsers() {
               users.map((user) => (
                 <div
                   key={user.id}
-                  className="text-lg mb-4 p-4 border-b border-gray-200 last:border-0 [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4  [&_p]:font-semibold [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600"
+                  className="mb-4 p-4 border-b border-gray-200 last:border-0 "
                 >
-                  <div>
-                    <p>Fullname:</p>
-                    <span>{user.name ?? "Nil"}</span>
+                  <div className="text-lg [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4  [&_p]:font-semibold [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600">
+                    <div>
+                      <p>Fullname:</p>
+                      <span>{user.name ?? "Nil"}</span>
+                    </div>
+                    <div>
+                      <p className="">Email: </p>
+                      <span className="text-primary">
+                        {user.email ?? "Nil"}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="">Age: </p>
+                      <span>{user.age ?? "Nil"}</span>
+                    </div>
+                    <div>
+                      <p className="">Bio: </p>
+                      <span>{user.bio ?? "Nil"}</span>
+                    </div>
                   </div>
-                  <div>
-                    <p className="">Email: </p>
-                    <span className="text-primary">{user.email ?? "Nil"}</span>
-                  </div>
-                  <div>
-                    <p className="">Age: </p>
-                    <span>{user.age ?? "Nil"}</span>
-                  </div>
-                  <div>
-                    <p className="">Bio: </p>
-                    <span>{user.bio ?? "Nil"}</span>
-                  </div>
+
+                  {/* Icons */}
+                  <div></div>
                 </div>
               ))
             ) : (
