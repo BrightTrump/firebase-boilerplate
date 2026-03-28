@@ -1,3 +1,4 @@
+import { LoginRequestBody } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useState, FormEvent } from "react";
@@ -28,26 +29,29 @@ export const useLogin = () => {
 
       const querySnapshot = await getDocs(emailQuery);
       if (!querySnapshot.empty) {
-        toast.error("Email already exists");
+        toast.error("Invalid Login Credentials!");
         setIsLoading(false);
         return;
       }
 
-      // Password validation
-      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
-      if (!passwordRegex.test(password)) {
-        toast.error(
-          "Password must be at least 6 characters long and contain both letters and numbers",
-        );
+      // Get user data
+      const doc = querySnapshot.docs[0];
+      const userData: LoginRequestBody = doc.data();
+
+      // Password match
+
+      if (userData.password !== password) {
+        toast.error("Incorrect password!");
         setIsLoading(false);
         return;
       }
 
-      toast.success("User successfully registered!");
-      console.log(`User with ID:", ${docRef.id} successfuly logged in!`);
+      // Success
+      toast.success(`Welcome back, ${userData.name}!`);
+      setSuccess(`Logged in as ${userData.name}`);
+      console.log(`User with ID: ${doc.id} successfully logged in!`);
 
       // Clear form
-
       setEmail("");
       setPassword("");
     } catch (err) {

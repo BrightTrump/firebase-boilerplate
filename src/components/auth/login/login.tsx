@@ -1,20 +1,16 @@
 "use client";
 import { Icon, Icons } from "@/components/ui";
-import { useCreateUser } from "@/hooks/auth/create-user.hook";
+import { useLogin } from "@/hooks/auth/user-login.hook";
 import Link from "next/link";
 import React, { FormEvent, useState } from "react";
 
-// interface SignUpProps {
-//   data: CreateUser;
-// }
-
 export default function Login() {
   const [isRememberMe, setIsRememberMe] = useState(false);
-  const { createUser, email, setEmail, password, setPassword, isLoading } =
-    useCreateUser();
+  const { loginUser, email, setEmail, password, setPassword, isLoading } =
+    useLogin();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    createUser(e);
+  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
+    loginUser(e);
   };
 
   const handleToggleIsRemeberMe = () => {
@@ -26,7 +22,7 @@ export default function Login() {
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Login
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Email

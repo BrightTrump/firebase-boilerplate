@@ -14,6 +14,7 @@ export interface UserData {
 }
 
 export interface LoginRequestBody {
+  name: string;
   email: string;
   password: string;
   rememberMe: boolean;
