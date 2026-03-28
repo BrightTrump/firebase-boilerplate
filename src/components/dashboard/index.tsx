@@ -1,8 +1,11 @@
 "use client";
 import { useCreateMessage } from "@/hooks/message/create-message.hook";
+import { useRouter } from "next/navigation";
 import React, { useState, FormEvent } from "react";
 
 export default function Dashboard() {
+  const router = useRouter();
+
   const { addMessage } = useCreateMessage();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

@@ -1,10 +1,12 @@
 import { LoginRequestBody } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 
 export const useLogin = () => {
+  const router = useRouter();
   // Form state
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -53,6 +55,9 @@ export const useLogin = () => {
       // Clear form
       setEmail("");
       setPassword("");
+
+      // Redirect to dashboard
+      router.push("/dashboard");
     } catch (err) {
       console.error("Error creating user:", err);
       toast.error("Failed to create user. Try again.");
