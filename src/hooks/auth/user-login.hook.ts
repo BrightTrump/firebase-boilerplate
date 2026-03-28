@@ -36,7 +36,7 @@ export const useLogin = () => {
 
       // Get user data
       const doc = querySnapshot.docs[0];
-      const userData: LoginRequestBody = doc.data();
+      const userData = doc.data() as LoginRequestBody;
 
       // Password match
 
