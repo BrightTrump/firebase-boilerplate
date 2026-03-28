@@ -28,8 +28,8 @@ export const useLogin = () => {
       );
 
       const querySnapshot = await getDocs(emailQuery);
-      if (!querySnapshot.empty) {
-        toast.error("Invalid Login Credentials!");
+      if (querySnapshot.empty) {
+        toast.error("No user found with this email!");
         setIsLoading(false);
         return;
       }
@@ -39,7 +39,6 @@ export const useLogin = () => {
       const userData = doc.data() as LoginRequestBody;
 
       // Password match
-
       if (userData.password !== password) {
         toast.error("Incorrect password!");
         setIsLoading(false);
