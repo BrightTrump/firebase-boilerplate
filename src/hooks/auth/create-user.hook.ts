@@ -76,7 +76,7 @@ export const useCreateUser = () => {
       }
 
       // Remove confirmPassword before saving
-      const userData: CreateUser = { name, email, password, bio };
+      const userData: CreateUser = { name, username, email, password, bio };
 
       const docRef = await addDoc(collection(db, "users"), {
         ...userData,

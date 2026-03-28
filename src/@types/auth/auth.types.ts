@@ -1,5 +1,6 @@
 export interface CreateUser {
   name: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword?: string;
@@ -14,7 +15,7 @@ export interface UserData {
 }
 
 export interface LoginRequestBody {
-  name: string;
+  username: string;
   email: string;
   password: string;
   rememberMe: boolean;

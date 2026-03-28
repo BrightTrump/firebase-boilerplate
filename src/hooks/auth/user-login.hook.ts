@@ -48,8 +48,8 @@ export const useLogin = () => {
       }
 
       // Success
-      toast.success(`Welcome back, ${userData.name}!`);
-      setSuccess(`Logged in as ${userData.name}`);
+      toast.success(`Welcome back, ${userData.username}!`);
+      setSuccess(`Logged in as ${userData.username}`);
       console.log(`User with ID: ${doc.id} successfully logged in!`);
 
       // Clear form
