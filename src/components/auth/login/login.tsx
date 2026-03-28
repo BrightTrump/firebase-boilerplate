@@ -63,11 +63,11 @@ export default function Login() {
               className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between py-4">
               <button
                 type="button"
                 onClick={handleToggleIsRemeberMe}
-                className="grid grid-flow-col items-center gap-3 text-right text-sm font-semibold text-black"
+                className="grid grid-flow-col items-center gap-3 text-right text-sm font-semibold"
               >
                 <span
                   className={`w-[18px] h-[18px] grid place-content-center rounded-sm border-2 transition-all ${
@@ -80,15 +80,9 @@ export default function Login() {
                 </span>
                 Remember Me
               </button>
+
               <Link href={"/forgot-password"} className="text-primary text-sm">
                 Forgot Password?
-              </Link>
-            </div>
-
-            <div className="pt-4 grid grid-cols-[auto_1fr] gap-2">
-              <p>Don&apos;t have an account?</p>
-              <Link href="auth/sign-up" className="text-primary">
-                Sign up here
               </Link>
             </div>
           </div>
@@ -99,6 +93,13 @@ export default function Login() {
           >
             {isLoading ? "Loading..." : "Login"}
           </button>
+
+          <div className="pt-4 grid grid-cols-[auto_1fr] gap-2">
+            <p>Don&apos;t have an account?</p>
+            <Link href="auth/sign-up" className="text-primary">
+              Sign up here
+            </Link>
+          </div>
         </form>
       </div>
     </main>
