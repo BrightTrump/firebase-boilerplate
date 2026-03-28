@@ -14,6 +14,7 @@ import { toast } from "sonner";
 export const useCreateUser = () => {
   // Form state
   const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -31,14 +32,27 @@ export const useCreateUser = () => {
     setIsLoading(true);
 
     try {
+      // Check if username already exists
+      const usernameQuery = query(
+        collection(db, "users"),
+        where("username", "==", username),
+      );
+
+      const usernameQuerySnapshot = await getDocs(usernameQuery);
+      if (!usernameQuerySnapshot.empty) {
+        toast.error("Email already exists");
+        setIsLoading(false);
+        return;
+      }
+
       // Check if email already exists
       const emailQuery = query(
         collection(db, "users"),
         where("email", "==", email),
       );
 
-      const querySnapshot = await getDocs(emailQuery);
-      if (!querySnapshot.empty) {
+      const emailQuerySnapshot = await getDocs(emailQuery);
+      if (!emailQuerySnapshot.empty) {
         toast.error("Email already exists");
         setIsLoading(false);
         return;
@@ -90,6 +104,8 @@ export const useCreateUser = () => {
     createUser: handleCreateUser,
     name,
     setName,
+    username,
+    setUsername,
     email,
     setEmail,
     password,
