@@ -39,7 +39,7 @@ export default function SignUp() {
           className="space-y-4 [&_label]:block [&_label]:text-sm [&_label]:font-medium [&_label]:text-gray-700 [&_input]:mt-1 [&_input]:px-4 [&_input]:py-2 [&_input]:w-full [&_input]:border [&_input]:border-gray-300 [&_input]:rounded-md [&_input]:shadow-sm [&_input]:focus:outline-none [&_input]:focus:ring-2 [&_input]:focus:ring-blue-500 [&_input]:focus:border-blue-500"
         >
           <div>
-            <label>Name</label>
+            <label>Fullname</label>
             <input
               type="text"
               value={name}
@@ -90,6 +90,7 @@ export default function SignUp() {
               onChange={(e) => setBio(e.target.value)}
               required
               rows={4}
+              className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
 
             <div className="pt-4 grid grid-cols-[auto_1fr] gap-2">
