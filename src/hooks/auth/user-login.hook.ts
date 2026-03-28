@@ -1,30 +1,19 @@
-import { CreateUser } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
-import {
-  collection,
-  addDoc,
-  query,
-  where,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 
-export const useCreateUser = () => {
+export const useLogin = () => {
   // Form state
-  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [bio, setBio] = useState<string>("");
 
   // Status state
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const handleCreateUser = async (e: FormEvent) => {
+  const handleUserLogin = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
@@ -54,30 +43,13 @@ export const useCreateUser = () => {
         return;
       }
 
-      // Confirm password match
-      if (password !== confirmPassword) {
-        toast.error("Passwords do not match");
-        setIsLoading(false);
-        return;
-      }
-
-      // Remove confirmPassword before saving
-      const userData: CreateUser = { name, email, password, bio };
-
-      const docRef = await addDoc(collection(db, "users"), {
-        ...userData,
-        createdAt: serverTimestamp(),
-      });
-
       toast.success("User successfully registered!");
-      console.log("User created with ID:", docRef.id);
+      console.log(`User with ID:", ${docRef.id} successfuly logged in!`);
 
       // Clear form
-      setName("");
+
       setEmail("");
       setPassword("");
-      setConfirmPassword("");
-      setBio("");
     } catch (err) {
       console.error("Error creating user:", err);
       toast.error("Failed to create user. Try again.");
@@ -87,17 +59,11 @@ export const useCreateUser = () => {
   };
 
   return {
-    createUser: handleCreateUser,
-    name,
-    setName,
+    loginUser: handleUserLogin,
     email,
     setEmail,
     password,
     setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    bio,
-    setBio,
     isLoading,
     error,
     success,

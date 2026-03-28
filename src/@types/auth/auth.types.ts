@@ -12,3 +12,9 @@ export interface UserData {
   age?: number;
   bio: string;
 }
+
+export interface LoginRequestBody {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}

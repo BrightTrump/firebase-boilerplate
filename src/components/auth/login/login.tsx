@@ -69,7 +69,7 @@ export default function Login() {
                 Remember Me
               </button>
 
-              <Link href={"/forgot-password"} className="text-primary text-sm">
+              <Link href={"#"} className="text-primary text-sm">
                 Forgot Password?
               </Link>
             </div>
