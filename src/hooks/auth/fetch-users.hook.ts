@@ -1,6 +1,6 @@
 import { UserData } from "@/@types/auth/auth.types";
 import { db } from "@/app/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 export const useFetchUsers = () => {
@@ -12,11 +12,20 @@ export const useFetchUsers = () => {
       setIsFetching(true);
 
       try {
-        const querySnapshot = await getDocs(collection(db, "users"));
+        // Oder users by newest
+        const usersQuery = query(
+          collection(db, "users"),
+          orderBy("createdAt", "desc"),
+        );
+
+        const snapshot = await getDocs(usersQuery);
+        snapshot.forEach((doc) => {
+          console.log(doc);
+        });
 
         const fetchedUsers: UserData[] = [];
 
-        querySnapshot.forEach((doc) => {
+        snapshot.forEach((doc) => {
           const docData = doc.data() as Omit<UserData, "id">;
 
           fetchedUsers.push({

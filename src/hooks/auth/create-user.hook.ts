@@ -7,6 +7,7 @@ import {
   query,
   where,
   getDocs,
+  orderBy,
   serverTimestamp,
 } from "firebase/firestore";
 import { useState, FormEvent } from "react";
@@ -37,6 +38,7 @@ export const useCreateUser = () => {
         collection(db, "users"),
         where("email", "==", email),
       );
+
       const querySnapshot = await getDocs(emailQuery);
       if (!querySnapshot.empty) {
         toast.error("Email already exists");
