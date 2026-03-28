@@ -1,4 +1,5 @@
 "use client";
+import { Icon, Icons } from "@/components/ui";
 import { useCreateUser } from "@/hooks/auth/create-user.hook";
 import Link from "next/link";
 import React, { FormEvent, useState } from "react";
@@ -75,7 +76,7 @@ export default function Login() {
                       : "bg-white border-gray-500"
                   }`}
                 >
-                  <Icon type={Icons.Check} size={16} color="#FFFFFF" />
+                  <Icon type={Icons.Check} className="text-sm text-[#FFFFFF]" />
                 </span>
                 Remember Me
               </button>
