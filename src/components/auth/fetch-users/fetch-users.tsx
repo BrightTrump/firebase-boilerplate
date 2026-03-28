@@ -24,9 +24,9 @@ export default function FetchUsers() {
               users.map((user) => (
                 <div
                   key={user.id}
-                  className="p-4 border-b border-gray-200 last:border-0 grid grid-cols-[1fr_auto] gap-4 items-start "
+                  className="p-4 border-b border-gray-200 last:border-0 grid grid-cols-[1fr_auto] gap-4 items-start"
                 >
-                  <div className="text-lg [&>div]:grid [&>div]:grid-cols-[auto_1fr] [&>div]:gap-4 [&_p]:font-semibold [&_p]:w-24 [&_p]:text-black [&_span]:text-gray-600">
+                  <div className="mb-4 grid gap-4 text-lg [&>div]:grid sm:[&>div]:grid-cols-[auto_minmax(0,1fr)] [&>div]:gap-1 sm:[&>div]:gap-4 [&_p]:font-semibold [&_p]:w-32 [&_p]:text-black [&_span]:text-gray-600 [&_span]:break-all">
                     <div>
                       <p>Fullname:</p>
                       <span>{user.name ?? "Nil"}</span>
@@ -44,6 +44,10 @@ export default function FetchUsers() {
                     <div>
                       <p className="">Bio: </p>
                       <span>{user.bio ?? "Nil"}</span>
+                    </div>
+                    <div>
+                      <p className="">Home Address: </p>
+                      <span>{user.address ?? "Nil"}</span>
                     </div>
                   </div>
 

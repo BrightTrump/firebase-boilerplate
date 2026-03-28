@@ -12,6 +12,7 @@ export interface UserData {
   email: string;
   age?: number;
   bio: string;
+  address?: string;
 }
 
 export interface LoginRequestBody {
