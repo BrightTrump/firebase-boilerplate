@@ -1,13 +1,14 @@
 "use client";
 import { useCreateUser } from "@/hooks/auth/create-user.hook";
 import Link from "next/link";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 
 // interface SignUpProps {
 //   data: CreateUser;
 // }
 
 export default function Login() {
+  const [isRememberMe, setIsRememberMe] = useState(false);
   const {
     createUser,
     name,
@@ -25,6 +26,10 @@ export default function Login() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     createUser(e);
+  };
+
+  const handleToggleIsRemeberMe = () => {
+    setIsRememberMe(!isRememberMe);
   };
   return (
     <main className="flex min-h-screen items-center justify-center p-8 bg-gray-100">
@@ -56,6 +61,28 @@ export default function Login() {
               required
               className="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
+
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={handleToggleIsRemeberMe}
+                className="grid grid-flow-col items-center gap-3 text-right text-sm font-semibold text-black"
+              >
+                <span
+                  className={`w-[18px] h-[18px] grid place-content-center rounded-sm border-2 transition-all ${
+                    isRememberMe
+                      ? "bg-primary border-primary"
+                      : "bg-white border-gray-500"
+                  }`}
+                >
+                  <Icon type={Icons.Check} size={16} color="#FFFFFF" />
+                </span>
+                Remember Me
+              </button>
+              <Link href={"/forgot-password"} className="text-primary text-sm">
+                Forgot Password?
+              </Link>
+            </div>
 
             <div className="pt-4 grid grid-cols-[auto_1fr] gap-2">
               <p>Don&apos;t have an account?</p>

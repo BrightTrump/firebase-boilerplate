@@ -6,7 +6,6 @@ import {
   query,
   where,
   getDocs,
-  orderBy,
   serverTimestamp,
 } from "firebase/firestore";
 import { useState, FormEvent } from "react";
